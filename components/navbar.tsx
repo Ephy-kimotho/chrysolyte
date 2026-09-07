@@ -4,7 +4,7 @@ import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
-import { BRAND, IMAGES, NAV_LINKS } from "@/lib/"
+import { BRAND, IMAGES, NAV_LINKS } from "@/lib"
 import { useActiveSection } from "@/hooks/use-active-section"
 
 const SECTION_IDS = NAV_LINKS.map(({ href }) => href.slice(1))

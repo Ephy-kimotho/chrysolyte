@@ -31,4 +31,16 @@ export const CONTACT = {
     email: "hello@chrysolyte.co.ke",
     phone: "+254 700 000 000",
     phoneHref: "+254700000000",
+    address: "P.O. Box 00000 - 00100 Nairobi, Kenya",
 } as const;
+
+export const FOOTER_DISCIPLINES = [
+    "Architecture",
+    "Interiors",
+    "Landscape",
+    "Construction",
+    "Project Management",
+] as const;
+
+export const FOOTER_TAGLINE =
+    "Architecture • Interiors • Landscape • Project Delivery";
