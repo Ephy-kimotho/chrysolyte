@@ -19,7 +19,7 @@ export function Navbar() {
         className={cn(
           "site-container flex items-center justify-between",
           "rounded-full border border-white/8",
-          "bg-[rgba(10,12,15,0.68)] backdrop-blur-[18px]",
+          "bg-[rgba(10,12,15,0.68)] backdrop-blur-sm",
           "px-3.5 py-3 md:px-4.5 md:py-3.5",
           "shadow-(--shadow-topbar)"
         )}

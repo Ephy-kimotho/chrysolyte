@@ -40,16 +40,16 @@ export function Home() {
             Kenya-based design &amp; build studio
           </p>
 
-          <h1 className="my-4.5 max-w-[10ch] text-display md:max-w-[8ch]">
+          <h1 className="my-4.5 max-w-[10ch] text-display md:max-w-[8ch] font-bold">
             From raw structure to{" "}
             <span className="text-white [text-shadow:0_8px_40px_rgba(0,0,0,.2)]">
               finished spaces.
             </span>
           </h1>
 
-          <p className="max-w-152 text-lead text-[#dbe3ea]">
+          <p className="max-w-lg text-lead text-[#dbe3ea]">
             CHRYSOLYTE delivers architecture, interiors and construction with a
-            clean visual language and a practical build mindset — taking
+            clean visual language and a practical build mindset taking
             projects from concept, to site, to completion.
           </p>
 

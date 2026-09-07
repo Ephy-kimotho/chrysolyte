@@ -14,7 +14,6 @@ export function Reveal({ children, className, delay = 0 }: RevealProps) {
   const { ref, inView } = useInView({
     threshold: 0.14,
     triggerOnce: true,
-    // Visible before hydration, so content is never stranded at opacity 0.
     fallbackInView: true,
   })
 
