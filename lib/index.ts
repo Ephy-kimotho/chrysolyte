@@ -34,11 +34,12 @@ export const CONTACT = {
     address: "P.O. Box 00000 - 00100 Nairobi, Kenya",
 } as const;
 
-export const FOOTER_DISCIPLINES = [
+export const DISCIPLINES = [
     "Architecture",
     "Interiors",
     "Landscape",
     "Construction",
+    "Value Engineering",
     "Project Management",
 ] as const;
 

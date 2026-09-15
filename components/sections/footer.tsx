@@ -3,7 +3,7 @@ import { ArrowUp, Mail, MapPin, Phone } from "lucide-react"
 import {
   BRAND,
   CONTACT,
-  FOOTER_DISCIPLINES,
+  DISCIPLINES,
   FOOTER_TAGLINE,
   NAV_LINKS,
   IMAGES,
@@ -12,7 +12,17 @@ import Image from "next/image"
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/60 pt-20 pb-14">
+    <footer className="relative overflow-hidden border-t border-white/60 bg-linear-[135deg] from-white/8 to-white/3 pt-20 pb-14">
+      {/* Gold bloom bleeding off the bottom-right corner */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-20 -bottom-40 size-80 blur-[10px] lg:size-100"
+        style={{
+          background:
+            "radial-gradient(circle, var(--gold-glow), transparent 70%)",
+        }}
+      />
+
       <div className="site-container">
         <div className="flex flex-col gap-10 md:flex-row md:justify-between md:gap-0">
           <div>
@@ -28,27 +38,21 @@ export function Footer() {
             </Link>
 
             <address className="mt-7 grid gap-4.5 not-italic">
-              <a
-                href={`#`}
-                className="flex items-center gap-3.5 text-[#d6dde5] transition-colors hover:text-white"
-              >
+              <p className="flex items-center gap-3.5 text-[#d6dde5] transition-colors hover:text-white">
                 <Phone
                   aria-hidden
                   className="transition-color size-4.5 shrink-0 text-muted-foreground"
                 />
                 <span>Office Number: {CONTACT.phone}</span>
-              </a>
+              </p>
 
-              <a
-                href={`#`}
-                className="group flex items-center gap-3.5 text-[#d6dde5] transition-colors hover:text-white"
-              >
+              <p className="group flex items-center gap-3.5 text-[#d6dde5] transition-colors hover:text-white">
                 <Mail
                   aria-hidden
                   className="transition-color size-4.5 shrink-0 text-muted-foreground"
                 />
                 <span>Email: {CONTACT.email}</span>
-              </a>
+              </p>
 
               <p className="flex items-start gap-3.5 text-[#d6dde5]">
                 <MapPin
@@ -96,7 +100,7 @@ export function Footer() {
                 Disciplines
               </h2>
               <ul className="mt-6 grid gap-3.5">
-                {FOOTER_DISCIPLINES.map((item) => (
+                {DISCIPLINES.map((item) => (
                   <li key={item} className="text-muted-foreground">
                     {item}
                   </li>
@@ -123,3 +127,7 @@ export function Footer() {
     </footer>
   )
 }
+
+// className="border-t border-white/60 pt-20 pb-14"
+
+// className="relative gap-0 overflow-hidden rounded-4xl border border-white/30 bg-transparent bg-linear-[135deg] from-white/8 to-white/3 p-6.5 shadow-(--shadow-panel) md:p-8.5"

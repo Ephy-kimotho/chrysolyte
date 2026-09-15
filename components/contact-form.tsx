@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, type ReactNode } from "react"
+import { CheckCircle2 } from "lucide-react"
 import { Controller, useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@/components/ui/button"
@@ -12,16 +13,21 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { cn } from "@/lib/utils"
-import {
-  INQUIRY_OPTIONS,
-  contactSchema,
-  type ContactValues,
-} from "@/lib/schemas/contact"
+import { contactSchema, type ContactValues } from "@/lib/schemas/contact"
+import { DISCIPLINES } from "@/lib"
 
-type Status = "idle" | "success" | "error"
+type Status = "idle" | "success"
 
 const fieldClass =
   "w-full rounded-2xl border border-white/10 bg-white/3 px-4 py-3 scheme-dark placeholder:text-white/35"
+
+// Ties an input to its `Field` error message for assistive tech. 
+function errorProps(id: string, error?: string) {
+  return {
+    "aria-invalid": error ? true : undefined,
+    "aria-describedby": error ? `${id}-error` : undefined,
+  }
+}
 
 function Field({
   id,
@@ -62,11 +68,36 @@ export function ContactForm() {
     resolver: zodResolver(contactSchema),
   })
 
-  async function onSubmit() {
-    setStatus("idle")
+  async function onSubmit(values: ContactValues) {
+    // TODO: replace with the real delivery once an inbox integration exists.
     await new Promise((resolve) => setTimeout(resolve, 1500))
+    console.log("Contact enquiry", values)
     reset()
     setStatus("success")
+  }
+
+  if (status === "success") {
+    return (
+      <div
+        role="status"
+        className="grid justify-items-center gap-3 rounded-2xl border border-white/10 bg-white/3 px-6 py-12 text-center"
+      >
+        <CheckCircle2 aria-hidden className="size-10 text-gold" />
+        <h3 className="text-xl font-bold">Enquiry received</h3>
+        <p className="text-dim max-w-md text-base">
+          Thanks for getting in touch. We&apos;ve got your details and will be
+          in touch shortly.
+        </p>
+        <Button
+          type="button"
+          variant="outline"
+          onClick={() => setStatus("idle")}
+          className="mt-3 h-auto rounded-full border-white/15 bg-transparent px-8 py-3.5 text-base font-semibold hover:bg-white/10"
+        >
+          Submit another response
+        </Button>
+      </div>
+    )
   }
 
   return (
@@ -78,7 +109,7 @@ export function ContactForm() {
             autoComplete="name"
             placeholder="Jane Wanjiru"
             className={fieldClass}
-
+            {...errorProps("fullName", errors.fullName?.message)}
             {...register("fullName")}
           />
         </Field>
@@ -91,7 +122,7 @@ export function ContactForm() {
             autoComplete="email"
             placeholder="jane@example.com"
             className={fieldClass}
-
+            {...errorProps("email", errors.email?.message)}
             {...register("email")}
           />
         </Field>
@@ -106,7 +137,7 @@ export function ContactForm() {
             autoComplete="tel"
             placeholder="+254 700 000 000"
             className={fieldClass}
-
+            {...errorProps("phone", errors.phone?.message)}
             {...register("phone")}
           />
         </Field>
@@ -133,6 +164,7 @@ export function ContactForm() {
                 <SelectTrigger
                   id="inquiry"
                   ref={field.ref}
+                  {...errorProps("inquiry", errors.inquiry?.message)}
                   className={cn(
                     fieldClass,
                     "text-base data-[size=default]:h-auto",
@@ -142,12 +174,11 @@ export function ContactForm() {
                   <SelectValue placeholder="Choose a service" />
                 </SelectTrigger>
                 <SelectContent align="start">
-                  {INQUIRY_OPTIONS.map((option) => (
+                  {DISCIPLINES.map((option) => (
                     <SelectItem
                       key={option}
                       value={option}
                       className={cn(
-                        "focus:text-white data-highlighted:text-white",
                         "focus:**:text-white! data-highlighted:**:text-white!"
                       )}
                     >
@@ -167,6 +198,7 @@ export function ContactForm() {
           rows={5}
           placeholder="Tell us about the site, the scope and roughly when you'd like to start."
           className={cn(fieldClass, "resize-y")}
+          {...errorProps("message", errors.message?.message)}
           {...register("message")}
         />
       </Field>
@@ -179,19 +211,6 @@ export function ContactForm() {
         >
           {isSubmitting ? "Sending…" : "Send enquiry"}
         </Button>
-
-        {/* Announced to screen readers as soon as it changes */}
-        <p aria-live="polite" className="text-center text-sm">
-          {status === "success" ? (
-            <span className="text-gold">
-              Thanks we&apos;ll be in touch shortly.
-            </span>
-          ) : status === "error" ? (
-            <span className="text-destructive">
-              Something went wrong. Please email us directly.
-            </span>
-          ) : null}
-        </p>
       </div>
     </form>
   )

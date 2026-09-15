@@ -51,15 +51,16 @@ export function Services() {
   return (
     <section id="services" className="py-section">
       <div className="site-container">
-        <div className="grid items-center gap-5.5 lg:grid-cols-[0.82fr_1.18fr]">
+        <div className="grid items-center gap-5.5 md:grid-cols-[0.82fr_1.18fr]">
           <Reveal>
-            <PanelCard>
+            {/* Portrait flyer: cap its width on phones so it stays short. */}
+            <PanelCard className="max-md:mx-auto max-md:max-w-64">
               <Image
                 src={IMAGES.flyerFloorPlan}
                 alt="CHRYSOLYTE architectural flyer showing a floor plan"
                 width={864}
                 height={1536}
-                sizes="(max-width: 1080px) 100vw, 38vw"
+                sizes="(max-width: 760px) 256px, 38vw"
                 className="h-auto w-full object-cover"
               />
             </PanelCard>

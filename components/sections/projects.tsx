@@ -77,7 +77,7 @@ export function Projects() {
               from frame to finish.
             </>
           }
-          lead="Most studios publish finished photography only.This is a single residential project followed through the stages in between structure, room formation,fit-out and completion."
+          lead="Most studios publish finished photography only. This is a single residential project followed through the stages in between structure, room formation, fit-out and completion."
         />
 
         <ol className="grid gap-4.5 md:grid-cols-3">
@@ -86,7 +86,7 @@ export function Projects() {
               <Reveal delay={i * 90} className="h-full">
                 <Card
                   className={cn(
-                    "group relative h-full min-h-80 gap-0 overflow-hidden",
+                    "group relative h-full min-h-56 gap-0 overflow-hidden md:min-h-72",
                     "rounded-3xl border-white/10 bg-[#111] py-0",
                     "shadow-(--shadow-panel)"
                   )}
@@ -124,9 +124,9 @@ export function Projects() {
             <Reveal delay={270} className="h-full">
               <Card
                 className={cn(
-                  "group relative h-[50%] min-h-90 gap-0 overflow-hidden lg:min-h-130",
+                  "group relative min-h-60 gap-0 overflow-hidden md:min-h-80 lg:min-h-110",
                   "rounded-3xl border-white/10 bg-[#111] py-0",
-                  "shadow-var(--shadow-panel)"
+                  "shadow-(--shadow-panel)"
                 )}
               >
                 <Image

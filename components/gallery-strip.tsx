@@ -25,7 +25,7 @@ export function GalleryStrip({ items, className }: GalleryStripProps) {
       {items.map((item, i) => (
         <Reveal key={item.title} delay={i * 90} className="h-full">
           <Card className="h-full gap-0 overflow-hidden rounded-3xl border-white/10 bg-[#111] py-0 shadow-(--shadow-panel)">
-            <div className="relative h-75 w-full md:h-105">
+            <div className="relative h-52 w-full md:h-64 lg:h-80">
               <Image
                 src={item.image}
                 alt={item.alt}
